@@ -12,6 +12,8 @@ class socket_class
 {
 	int sfd;
 	struct sockaddr_un s;
+	socket_class(const socket_class& sc);
+	socket_class& operator=(const socket_class& sc);
 public:	
 	socket_class() = default;
 	void create_socket();

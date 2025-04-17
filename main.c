@@ -9,7 +9,7 @@ int main()
 	struct sockaddr_un sun, dest;
 	const std::string path("client_socket");
 	const char* dest_path = "server_socket";
-	const std::string datagram("Hello, from client\n");
+	const std::string datagram("cat");
 
 	sun.sun_family = AF_UNIX;
 	strcpy(sun.sun_path, path.data());
