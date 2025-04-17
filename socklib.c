@@ -27,10 +27,10 @@ void socket_class::bind_socket(const struct sockaddr* addr, socklen_t slen)
 	}
 }
 
-void socket_class::send_datagram(const struct sockaddr* addr, const char* datagram, size_t len, socklen_t slen)
+void socket_class::send_datagram(const struct sockaddr* addr, const std::string& datagram, size_t len, socklen_t slen)
 {
 	errno = 0;
-	auto cnt = sendto(sfd, datagram, len, 0, addr, slen);
+	auto cnt = sendto(sfd, datagram.data(), len, 0, addr, slen);
 	if (cnt == -1)
 	{
 		perror("void socket_class::send_datagram()\n");
@@ -38,7 +38,7 @@ void socket_class::send_datagram(const struct sockaddr* addr, const char* datagr
 	}
 }
 
-void socket_class::recieve_datagram(char* datagram, int len)
+void socket_class::recieve_datagram(char* datagram, int len)	
 {
 	errno = 0;
 	auto cnt = recvfrom(sfd, datagram, len, 0, NULL, NULL);
@@ -60,10 +60,10 @@ void socket_class::close_socket()
 	}
 }
 
-void socket_class::delete_socket_file(const char* fname)
+void socket_class::delete_socket_file(const std::string& fname)	
 {
 	errno = 0;
-	auto res = unlink(fname);
+	auto res = unlink(fname.data());
 	if (res == -1)
 	{
 		perror("void socket_class::delete_socket_file()\n");
